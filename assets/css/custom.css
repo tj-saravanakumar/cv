@@ -1,0 +1,202 @@
+/* =========================================================
+   Custom UI optimizations (loaded AFTER style.css)
+   Non-destructive overrides - refined 2025 look & feel
+   ========================================================= */
+
+:root {
+  --accent: #0563bb;
+  --accent-2: #12b5e5;
+  --ink: #2b3640;
+  --muted: #6c7a89;
+  --card-radius: 16px;
+  --shadow-sm: 0 4px 18px rgba(20, 40, 80, 0.06);
+  --shadow-md: 0 14px 40px rgba(20, 40, 80, 0.12);
+  --grad: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+}
+
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+/* ---------- Hero ---------- */
+#hero {
+  position: relative;
+}
+#hero h1 {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+#hero p span { font-weight: 600; }
+
+/* Social links -> circular buttons */
+#hero .social-links a {
+  width: 46px;
+  height: 46px;
+  margin-right: 12px;
+  border-radius: 50%;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--accent);
+  background: rgba(5, 99, 187, 0.08);
+  border: 1px solid rgba(5, 99, 187, 0.15);
+  transition: all 0.25s ease;
+}
+#hero .social-links a:hover {
+  color: #fff;
+  background: var(--grad);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(5, 99, 187, 0.35);
+}
+
+/* ---------- Sidebar nav ---------- */
+.nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > a {
+  background: var(--grad) !important;
+  box-shadow: 0 6px 16px rgba(5, 99, 187, 0.30);
+}
+
+/* ---------- Section titles ---------- */
+.section-title h2 { letter-spacing: 0.5px; }
+.section-title h2::after { background: var(--grad); height: 3px; border-radius: 3px; }
+
+/* ---------- About ---------- */
+.about .content img, #about img.img-fluid {
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-md);
+  border: 4px solid #fff;
+}
+.about .content ul li { margin-bottom: 12px; }
+.about .content ul strong { color: var(--accent); }
+
+/* ---------- Skills: gradient rounded bars ---------- */
+.skills .progress { padding: 0; margin-bottom: 22px; }
+.skills .progress .skill { font-weight: 600; color: var(--ink); }
+.skills .progress .skill .val { color: var(--accent); font-style: normal; font-weight: 700; }
+.skills .progress-bar-wrap {
+  background: #eef1f5;
+  border-radius: 20px;
+  height: 12px;
+  overflow: hidden;
+}
+.skills .progress-bar {
+  background: var(--grad) !important;
+  border-radius: 20px;
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,0.08);
+}
+
+/* ---------- Resume / timeline ---------- */
+.resume .resume-item {
+  border-left: 2px solid rgba(5, 99, 187, 0.25);
+  padding: 4px 0 18px 22px;
+}
+.resume .resume-item h4 { letter-spacing: 0.2px; }
+.resume .resume-item h5 {
+  background: rgba(5, 99, 187, 0.08);
+  color: var(--accent);
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+}
+.resume .resume-item::before {
+  background: #fff !important;
+  border: 3px solid var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(5, 99, 187, 0.12);
+}
+
+/* ---------- Cards: Services (Skill Testimonies) ---------- */
+.services .icon-box {
+  border-radius: var(--card-radius) !important;
+  border: 1px solid #eef1f5 !important;
+  box-shadow: var(--shadow-sm) !important;
+  padding: 26px 24px !important;
+  position: relative;
+  overflow: hidden;
+}
+.services .icon-box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.services .icon-box:hover {
+  border-color: #e3e9f2 !important;
+  box-shadow: var(--shadow-md) !important;
+  transform: translateY(-6px);
+}
+.services .icon-box:hover::before { transform: scaleX(1); }
+.services .icon-box h6 a {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: var(--grad);
+  color: #fff !important;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+.services .icon-box h6 a:hover {
+  color: #fff !important;
+  filter: brightness(1.08);
+  box-shadow: 0 8px 18px rgba(5, 99, 187, 0.30);
+}
+
+/* ---------- Awards section (reuses .resume styles + accent cards) ---------- */
+#awards .resume-item {
+  background: #fff;
+  border: 1px solid #eef1f5;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px 22px !important;
+  margin-bottom: 22px;
+  transition: all 0.3s ease;
+}
+#awards .resume-item::before { display: none; }
+#awards .resume-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-left-color: var(--accent-2);
+}
+#awards .resume-item h4 { display: flex; align-items: center; gap: 8px; }
+#awards .resume-item h4::before {
+  content: "\F5A2"; /* bootstrap-icons trophy */
+  font-family: "bootstrap-icons";
+  color: #f6b40a;
+  font-size: 18px;
+}
+
+/* ---------- CV section ---------- */
+#cv .downloadpdf a {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 40px;
+  background: var(--grad);
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(5, 99, 187, 0.30);
+  transition: all 0.25s ease;
+}
+#cv .downloadpdf a:hover { transform: translateY(-3px); filter: brightness(1.08); }
+#cv img {
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid #eef1f5;
+  transition: transform 0.35s ease;
+}
+#cv { max-width: 900px; margin: 0 auto; padding: 0 15px 60px; }
+
+/* ---------- Footer ---------- */
+#footer { border-top: 3px solid transparent; border-image: var(--grad) 1; }
+
+/* ---------- Reduced motion respect ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
