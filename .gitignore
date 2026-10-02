@@ -1,0 +1,7 @@
+# Local backups - not part of the published site
+backup/
+*.bak
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
